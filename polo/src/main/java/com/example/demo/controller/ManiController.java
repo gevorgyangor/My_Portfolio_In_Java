@@ -1,8 +1,12 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserType;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.security.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -27,12 +31,23 @@ public class ManiController {
     @GetMapping("/login")
     public String login(ModelMap map) {
         map.addAttribute("user", new User());
-        return "login";
+        return "logForm";
     }
 
-    @PostMapping("/loginUser")
-    public String loginUser() {
-        return "redirect:/";
+    @GetMapping("/register")
+    public String registerUser(ModelMap map) {
+        map.addAttribute("user", new User());
+        return "regForm";
+    }
+
+
+    @GetMapping("/loginUser")
+    public String loginUser(@AuthenticationPrincipal UserDetails userDetails) {
+        User user = ((CurrentUser) userDetails).getUser();
+        if (user.getType() == UserType.USER) {
+            return "index";
+        }
+        return "admin";
     }
 
     @GetMapping("/blogPage")
