@@ -109,8 +109,11 @@
             <!-- Begin of CTA Actions, & Icons menu -->
             <ul class="navbar-nav navbar-nav-actions">
                 <li class="nav-item">
-                    <input class="btn btn-outline-white btn-round"  value="Sing In" type="submit" href="/login"/>
-
+                    <form th:action="@{/login}" th:method="get">
+                        <input th:type="submit" class="btn regular btn-primary mr-4 mt-2 mb-2"
+                               id="pwd" value="Sing in">
+                        </input>
+                    </form>
                 </li>
             </ul>
 
@@ -967,7 +970,7 @@
         <div class="section-wrapper">
             <!-- title -->
             <div class="section-title text-center">
-                <h5 class="title-bg">Subscribe</h5>
+                <h5 class="title-bg">Register</h5>
             </div>
 
             <!-- content -->
@@ -980,7 +983,7 @@
                         <form class="send_email_form form-container form-container-transparent form-container-white"
                               method="post" action="http://demo.highhay.com/simpleux/ajaxserver/serverfile.php">
                             <div class="form-desc">
-                                <h2 class="display-4 display-title  anim-2">Subscribe</h2>
+                                <h2 class="display-4 display-title  anim-2">Register</h2>
                                 <p class="invite  anim-3">Don't miss any new opportunity, Hurry up! register now</p>
                             </div>
                             <div class="form-input  anim-4">

@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.d{
+    display: flex;
+    justify-content: center;
+}
+.d:hover{
+    background-color: rgb(99, 99, 99);
+}

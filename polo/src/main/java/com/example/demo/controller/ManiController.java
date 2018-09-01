@@ -45,7 +45,7 @@ public class ManiController {
     public String loginUser(@AuthenticationPrincipal UserDetails userDetails) {
         User user = ((CurrentUser) userDetails).getUser();
         if (user.getType() == UserType.USER) {
-            return "index";
+            return "redirect:/";
         }
         return "admin";
     }
