@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -40,6 +41,20 @@ public class ManiController {
         return "regForm";
     }
 
+    @PostMapping("/registerUser")
+    public String registerUser(@ModelAttribute("user") User user, ModelMap map) {
+        User user1 = new User();
+        user1 = userRepository.findUserByEmail(user.getEmail());
+        if (user.getUsername().equals(user1.getUsername())) {
+            String errorMessage = "Already Username";
+            map.addAttribute("errorMessage", errorMessage);
+            return "redirect:/register";
+        }
+        user.setRepeatPassword(passwordEncoder.encode(user.getRepeatPassword()));
+        user.setType(UserType.USER);
+        userRepository.save(user);
+        return "redirect:/login";
+    }
 
     @GetMapping("/loginUser")
     public String loginUser(@AuthenticationPrincipal UserDetails userDetails) {

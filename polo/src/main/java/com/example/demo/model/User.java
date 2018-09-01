@@ -37,6 +37,7 @@ public class User {
     @Column(name = "repeat_password")
     private String repeatPassword;
     @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
     private UserType type;
 
 }
