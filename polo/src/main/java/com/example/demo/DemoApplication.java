@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import com.example.demo.model.User;
+import com.example.demo.model.UserType;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -35,6 +36,8 @@ public class DemoApplication implements CommandLineRunner {
                     .email("admin@gmail.com")
                     .password(passwordEncoder.encode("admin"))
                     .repeatPassword(passwordEncoder.encode("admin"))
+                    .verify(true)
+                    .type(UserType.ADMIN)
                     .build();
             userRepository.save(admin);
         }
