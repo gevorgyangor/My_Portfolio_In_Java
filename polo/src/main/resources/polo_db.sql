@@ -31,13 +31,17 @@ CREATE TABLE `user` (
   `password` varchar(255) DEFAULT NULL,
   `repeat_password` varchar(255) DEFAULT NULL,
   `user_type` enum('USER','ADMIN') DEFAULT 'USER',
+  `verify` tinyint(1) NOT NULL DEFAULT '0',
+  `token` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
-insert  into `user`(`id`,`name`,`surname`,`age`,`phone_number`,`username`,`email`,`password`,`repeat_password`,`user_type`) values 
-(1,'admin','admin',24,'00000000','Admin','admin@gmail.com','$2a$10$lpQMLngJVAytRLTeTqO4xurIeHLuH.bgWwjG.Oq.8YGtScHAiAtde','$2a$10$.t.MprmGUB2wMltQyPKztO7QwyFrXjKeyKF1xqSdukrk.OmQ31OOq',NULL);
+insert  into `user`(`id`,`name`,`surname`,`age`,`phone_number`,`username`,`email`,`password`,`repeat_password`,`user_type`,`verify`,`token`) values 
+(1,'admin','admin',24,'00000000','Admin','admin@gmail.com','$2a$10$lpQMLngJVAytRLTeTqO4xurIeHLuH.bgWwjG.Oq.8YGtScHAiAtde','$2a$10$.t.MprmGUB2wMltQyPKztO7QwyFrXjKeyKF1xqSdukrk.OmQ31OOq','ADMIN',0,NULL),
+(9,'Aram','Hovhannisyan',22,'+37498288024','Aram','gevorgyan604@mail.ru','1234','$2a$10$9/UYM9uDNHaU1Xp0dRgYoeaHsyurElgial7wU70mSclJmLYFeQFQq','USER',0,'d475c6cd-b30a-4cf9-b137-b634bda692eb'),
+(10,'Gor','Gevorgyan',24,'+37498149490','Gor','gevorgyan604@mail.ru','1234','$2a$10$5BLivcav/erDKkF7dx5bVO93R16IM9PHg6xbrh6EJOOG..asE9ZPS','USER',0,'b7fefa53-5abb-44da-9259-f90c59e6b37b');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -68,8 +68,8 @@ public class ManiController {
         user.setType(UserType.USER);
         user.setToken(UUID.randomUUID().toString());
         userRepository.save(user);
-        String url = String.format("http://localhost:8080/verify?token= %s & email = %s", user.getToken(), user.getEmail());
-        String text = String.format("Dear %s student, you are registered %s", user.getName(), url);
+        String url = String.format("http://localhost:8080/verify?token=%s&email=%s", user.getToken(), user.getEmail());
+        String text = String.format("Dear %s student, you are registered%s", user.getName(), url);
         emailService.sendSimpleMessage(user.getEmail(), "Welcome  ", text);
         return "redirect:/login";
     }
